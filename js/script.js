@@ -1,5 +1,3 @@
-let moment = require("moment");
-
 // elements to work with start
 let loca = document.getElementById("loc");
 let sunr = document.getElementById("sunr");
@@ -46,6 +44,8 @@ function modifyData(data) {
     location: frontLocation,
     country: frontCountry,
     weather: frontDesctiption,
+    sunrise: tsTot(timestampSunrise),
+    sunset: tsTot(timestampSunset),
   };
 }
 
@@ -57,5 +57,5 @@ getWeather().then((data) => {
 // time functions
 
 function tsTot(ts) {
-  let time = new Date();
+  return moment.unix(ts).format("Do MMMM, h:mm:ss a");
 }

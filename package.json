@@ -17,5 +17,7 @@
     "url": "https://github.com/rifat-H/weatherApp/issues"
   },
   "homepage": "https://github.com/rifat-H/weatherApp#readme",
-  "dependencies": {}
+  "dependencies": {
+    "date-fns": "^2.11.1"
+  }
 }

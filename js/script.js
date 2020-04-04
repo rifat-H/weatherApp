@@ -14,11 +14,13 @@ let loc = "Dhaka";
 
 const apiKey = "05d8da51ea2c2995c01b6c0650f02eba";
 
-let apiUrl =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  loc +
-  "&appid=" +
-  apiKey;
+// let apiUrl =
+//   "https://api.openweathermap.org/data/2.5/weather?q=" +
+//   loc +
+//   "&appid=" +
+//   apiKey;
+
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${apiKey}`;
 
 // gets weather data
 async function getWeather() {
@@ -62,6 +64,11 @@ function updateData(data) {
 
 async function getData() {
   const data = await getWeather();
+
+  if (data.cod != 200) {
+    locationNotFound(loc);
+  }
+
   const weatherData = modifyData(data);
   updateData(weatherData);
 }
@@ -69,6 +76,8 @@ async function getData() {
 // time functions
 
 function timestampToTime(ts) {
+  // console.log(format(new Date(), ""));
+
   return moment.unix(ts).format("Do MMMM, h:mm:ss a");
 }
 
@@ -92,5 +101,12 @@ function initSearch() {
 
   getData();
 }
+
+// location not found error handler
+
+const locationNotFound = () => {
+  $(".toast").toast("show");
+  throw new Error("Location Not found");
+};
 
 getData();

@@ -10,9 +10,8 @@ let mintempe = document.getElementById("mintempe");
 let weather = document.getElementById("weather");
 // elements to work with end
 
-var loc = "Dhaka";
+let loc = "Dhaka";
 
-// let apiKey = "44149fa9931c4737024864f5b6c14a28";
 let apiKey = "05d8da51ea2c2995c01b6c0650f02eba";
 
 let apiUrl =
@@ -42,8 +41,8 @@ function modifyData(data) {
   return {
     location: frontLocation + ", " + frontCountry,
     weather: frontDesctiption,
-    sunrise: tsTot(timestampSunrise),
-    sunset: tsTot(timestampSunset),
+    sunrise: timestampToTime(timestampSunrise),
+    sunset: timestampToTime(timestampSunset),
     tempNow: apiCurrentTemp,
     maxTemp: apiMaxTemp,
     minTemp: apiMinTemp,
@@ -61,16 +60,15 @@ function updateData(data) {
   mintempe.innerHTML = data.minTemp;
 }
 
-function getData() {
-  getWeather().then((data) => {
-    let weatherData = modifyData(data);
-    updateData(weatherData);
-  });
+async function getData() {
+  let data = await getWeather();
+  let weatherData = modifyData(data);
+  updateData(weatherData);
 }
 
 // time functions
 
-function tsTot(ts) {
+function timestampToTime(ts) {
   return moment.unix(ts).format("Do MMMM, h:mm:ss a");
 }
 

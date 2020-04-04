@@ -104,7 +104,10 @@ function initSearch() {
 
 // location not found error handler
 
-const locationNotFound = () => {
+const locationNotFound = (loc) => {
+  document.getElementById(
+    "locationToastBody"
+  ).innerHTML = `"<span class='text-danger'>${loc}</span>" not found`;
   $(".toast").toast("show");
   throw new Error("Location Not found");
 };

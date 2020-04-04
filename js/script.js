@@ -1,3 +1,5 @@
+let moment = require("moment");
+
 // elements to work with start
 let loca = document.getElementById("loc");
 let sunr = document.getElementById("sunr");
@@ -39,9 +41,21 @@ function modifyData(data) {
   let apiMaxTemp = data.main.temp_max;
   let apiMinTemp = data.main.temp_min;
   let frontDesctiption = data.weather[0].description;
-  console.log(data);
+
+  return {
+    location: frontLocation,
+    country: frontCountry,
+    weather: frontDesctiption,
+  };
 }
 
 getWeather().then((data) => {
-  let weatherDataArr = modifyData(data);
+  let weatherData = modifyData(data);
+  console.log(weatherData);
 });
+
+// time functions
+
+function tsTot(ts) {
+  let time = new Date();
+}

@@ -1,18 +1,18 @@
 // elements to work with start
-let go = document.getElementById("go");
-let locationInput = document.getElementById("location");
-let loca = document.getElementById("loc");
-let sunr = document.getElementById("sunr");
-let suns = document.getElementById("suns");
-let ctempe = document.getElementById("ctempe");
-let maxtempe = document.getElementById("maxtempe");
-let mintempe = document.getElementById("mintempe");
-let weather = document.getElementById("weather");
+const go = document.getElementById("go");
+const locationInput = document.getElementById("location");
+const loca = document.getElementById("loc");
+const sunr = document.getElementById("sunr");
+const suns = document.getElementById("suns");
+const ctempe = document.getElementById("ctempe");
+const maxtempe = document.getElementById("maxtempe");
+const mintempe = document.getElementById("mintempe");
+const weather = document.getElementById("weather");
 // elements to work with end
 
 let loc = "Dhaka";
 
-let apiKey = "05d8da51ea2c2995c01b6c0650f02eba";
+const apiKey = "05d8da51ea2c2995c01b6c0650f02eba";
 
 let apiUrl =
   "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -22,21 +22,21 @@ let apiUrl =
 
 // gets weather data
 async function getWeather() {
-  let result = await fetch(apiUrl);
-  let data = await result.json();
+  const result = await fetch(apiUrl);
+  const data = await result.json();
   return data;
 }
 
 // get data in array with fix
 function modifyData(data) {
-  let frontLocation = data.name;
-  let frontCountry = data.sys.country;
-  let timestampSunrise = data.sys.sunrise;
-  let timestampSunset = data.sys.sunset;
-  let apiCurrentTemp = data.main.temp;
-  let apiMaxTemp = data.main.temp_max;
-  let apiMinTemp = data.main.temp_min;
-  let frontDesctiption = data.weather[0].description;
+  const frontLocation = data.name;
+  const frontCountry = data.sys.country;
+  const timestampSunrise = data.sys.sunrise;
+  const timestampSunset = data.sys.sunset;
+  const apiCurrentTemp = data.main.temp;
+  const apiMaxTemp = data.main.temp_max;
+  const apiMinTemp = data.main.temp_min;
+  const frontDesctiption = data.weather[0].description;
 
   return {
     location: frontLocation + ", " + frontCountry,
@@ -61,8 +61,8 @@ function updateData(data) {
 }
 
 async function getData() {
-  let data = await getWeather();
-  let weatherData = modifyData(data);
+  const data = await getWeather();
+  const weatherData = modifyData(data);
   updateData(weatherData);
 }
 

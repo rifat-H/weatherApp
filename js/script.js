@@ -1,4 +1,6 @@
 // elements to work with start
+let go = document.getElementById("go");
+let locationInput = document.getElementById("location");
 let loca = document.getElementById("loc");
 let sunr = document.getElementById("sunr");
 let suns = document.getElementById("suns");
@@ -26,9 +28,6 @@ async function getWeather() {
   return data;
 }
 
-// updates data to dom
-function updateData(data) {}
-
 // get data in array with fix
 function modifyData(data) {
   let frontLocation = data.name;
@@ -41,21 +40,59 @@ function modifyData(data) {
   let frontDesctiption = data.weather[0].description;
 
   return {
-    location: frontLocation,
-    country: frontCountry,
+    location: frontLocation + ", " + frontCountry,
     weather: frontDesctiption,
     sunrise: tsTot(timestampSunrise),
     sunset: tsTot(timestampSunset),
+    tempNow: apiCurrentTemp,
+    maxTemp: apiMaxTemp,
+    minTemp: apiMinTemp,
   };
 }
 
-getWeather().then((data) => {
-  let weatherData = modifyData(data);
-  console.log(weatherData);
-});
+// updates data to dom
+function updateData(data) {
+  loca.innerHTML = data.location;
+  weather.innerHTML = data.weather.toUpperCase();
+  sunr.innerHTML = data.sunrise;
+  suns.innerHTML = data.sunset;
+  ctempe.innerHTML = data.tempNow;
+  maxtempe.innerHTML = data.maxTemp;
+  mintempe.innerHTML = data.minTemp;
+}
+
+function getData() {
+  getWeather().then((data) => {
+    let weatherData = modifyData(data);
+    updateData(weatherData);
+  });
+}
 
 // time functions
 
 function tsTot(ts) {
   return moment.unix(ts).format("Do MMMM, h:mm:ss a");
 }
+
+// start search functionality
+
+go.addEventListener("click", initSearch);
+
+locationInput.addEventListener("keydown", (e) => {
+  if (e.keyCode == 13) {
+    initSearch();
+  }
+});
+
+function initSearch() {
+  loc = locationInput.value;
+  apiUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    loc +
+    "&appid=" +
+    apiKey;
+
+  getData();
+}
+
+getData();

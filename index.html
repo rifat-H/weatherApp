@@ -23,25 +23,24 @@
           </div>
           <input
             type="text"
+            id="location"
             class="form-control"
-            placeholder="Location"
-            aria-label="Location"
-            aria-describedby="addon-wrapping"
+            placeholder="Ex. London"
           />
           <div class="input-group-append">
-            <button class="btn btn-primary">Go</button>
+            <button id="go" class="btn btn-primary">Go</button>
           </div>
         </div>
         <!-- search end -->
         <!-- results start -->
-        <div class="mt-5">
+        <div class="mt-5 datalist">
           <p>location: <span id="loc"></span></p>
+          <p>Weather: <span id="weather"></span></p>
           <p>sunrise: <span id="sunr"></span></p>
           <p>sunset: <span id="suns"></span></p>
           <p>Current Temperature: <span id="ctempe"></span></p>
           <p>Max Temperature: <span id="maxtempe"></span></p>
           <p>Min Temperature: <span id="mintempe"></span></p>
-          <p>Weather: <span id="weather"></span></p>
         </div>
         <!-- results end -->
       </div>
@@ -64,7 +63,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="js/loadcities.js"></script>
+    <!-- <script src="js/loadcities.js"></script> -->
     <script src="js/script.js"></script>
   </body>
 </html>

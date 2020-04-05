@@ -14,12 +14,6 @@ let loc = "Dhaka";
 
 const apiKey = "05d8da51ea2c2995c01b6c0650f02eba";
 
-// let apiUrl =
-//   "https://api.openweathermap.org/data/2.5/weather?q=" +
-//   loc +
-//   "&appid=" +
-//   apiKey;
-
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${loc}&appid=${apiKey}`;
 
 // gets weather data
